@@ -1,0 +1,18 @@
+{
+  "name": "pasalo-empleos",
+  "version": "1.0.0",
+  "description": "Mini sitio de ofertas de empleo para Pasalo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node seed.js"
+  },
+  "keywords": ["empleo", "argentina", "jobs"],
+  "author": "Pasalo",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
