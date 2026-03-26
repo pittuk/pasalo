@@ -392,7 +392,7 @@ function formatSalary(salary) {
   if (!salary || salary === 'A convenir' || salary === 'No especificado') {
     return 'A convenir';
   }
-  return `$${salary}`;
+  return `${salary}`;
 }
 
 function escapeHtml(text) {
