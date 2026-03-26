@@ -128,6 +128,7 @@ async function loadJobs() {
     document.getElementById('totalJobs').textContent = allJobs.length;
     document.getElementById('loadingState').style.display = 'none';
 
+    generateFilterChips();
     filterAndDisplay();
   } catch (err) {
     console.error('Error loading jobs:', err);
@@ -141,6 +142,43 @@ async function loadJobs() {
 // ==========================================
 // Filter & Display
 // ==========================================
+function generateFilterChips() {
+  const container = document.getElementById('filterChips');
+  
+  const locationCounts = {};
+  allJobs.forEach(job => {
+    if (!job.ubicacion) return;
+    // Extract the main location (usually after the comma)
+    const parts = job.ubicacion.split(',');
+    const mainLoc = parts[parts.length - 1].trim(); 
+    
+    if (mainLoc) {
+      locationCounts[mainLoc] = (locationCounts[mainLoc] || 0) + 1;
+    }
+  });
+
+  // Get top 6 most common locations
+  const topLocations = Object.entries(locationCounts)
+    .sort((a, b) => b[1] - a[1]) 
+    .slice(0, 6)
+    .map(entry => entry[0]);
+
+  container.innerHTML = '<button class="chip active" data-filter="all">Todos</button>';
+  
+  // Re-append current active filter if it is not in the top list but somehow active
+  if (currentFilter !== 'all' && !topLocations.includes(currentFilter)) {
+    // optional logic, but usually it resets to 'all' anyway
+  }
+
+  topLocations.forEach(loc => {
+    const btn = document.createElement('button');
+    btn.className = 'chip' + (currentFilter === loc ? ' active' : '');
+    btn.dataset.filter = loc;
+    btn.textContent = loc;
+    container.appendChild(btn);
+  });
+}
+
 function filterAndDisplay(append = false) {
   let filtered = [...allJobs];
 
