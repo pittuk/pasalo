@@ -190,8 +190,8 @@ a {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
@@ -847,6 +847,11 @@ a {
   .hero {
     padding: 48px 0 32px;
   }
+  .hero::before {
+   width: 350px;
+  height: 350px;
+
+}
 
   .hero-title {
     font-size: 2rem;
@@ -940,7 +945,7 @@ a {
 
 /* Modal image */
 .modal-image {
-  width: 100%;
+  width: 60%;
   border-radius: var(--radius-md);
   margin-bottom: 24px;
   border: 1px solid var(--border);
